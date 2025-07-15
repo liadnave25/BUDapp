@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+
+    <TextView
+        android:id="@+id/editProfileTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_profile"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#2C6E49"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <!-- First Name -->
+    <EditText
+        android:id="@+id/firstNameInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="from database"
+        android:hint="@string/first_name"
+        android:enabled="false"
+        android:background="@drawable/edit_text_bg"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:textColor="#2C6E49"
+        android:textColorHint="#757575"
+        app:layout_constraintTop_toBottomOf="@id/editProfileTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <!-- Last Name -->
+    <EditText
+        android:id="@+id/lastNameInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="from database"
+        android:hint="@string/last_name"
+        android:enabled="false"
+        android:inputType="textPersonName"
+        android:background="@drawable/edit_text_bg"
+        android:padding="12dp"
+        android:textColor="#2C6E49"
+        android:textColorHint="#757575"
+        app:layout_constraintTop_toBottomOf="@id/firstNameInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <!-- Email -->
+    <EditText
+        android:id="@+id/emailInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="from database"
+        android:hint="@string/email_address"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edit_text_bg"
+        android:padding="12dp"
+        android:textColor="#2C6E49"
+        android:textColorHint="#757575"
+        app:layout_constraintTop_toBottomOf="@id/lastNameInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <!-- Password with toggle -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/passwordContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"
+        android:layoutDirection="ltr"
+        app:layout_constraintTop_toBottomOf="@id/emailInput"
+        app:layout_constraintBottom_toTopOf="@id/phoneLayout"
+        >
+
+        <EditText
+            android:id="@+id/passwordInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="from database"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:background="@drawable/edit_text_bg"
+            android:padding="12dp"
+            android:textColor="#2C6E49"
+            android:textColorHint="#757575"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/passwordToggle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="VisualLintTextFieldSize" />
+
+        <ImageView
+            android:id="@+id/passwordToggle"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/toggle_password_visibility"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="12dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/phoneLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordContainer"
+        app:layout_constraintBottom_toTopOf="@id/dateOfBirthInput"
+        >
+
+        <EditText
+            android:id="@+id/phonePrefixInput"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="+972"
+            android:hint="@string/_972"
+            android:inputType="phone"
+            android:maxLength="5"
+            android:background="@drawable/edit_text_bg"
+            android:padding="12dp"
+            android:textColor="#2C6E49"
+            android:textColorHint="#757575"
+            android:layout_marginEnd="8dp"/>
+
+        <EditText
+            android:id="@+id/phoneNumberInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:hint="@string/phone"
+            android:inputType="phone"
+            android:background="@drawable/edit_text_bg"
+            android:padding="12dp"
+            android:textColor="#2C6E49"
+            android:textColorHint="#757575"
+            tools:ignore="VisualLintTextFieldSize" />
+    </LinearLayout>
+
+    <!-- Date of Birth -->
+    <EditText
+        android:id="@+id/dateOfBirthInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/date_of_birth"
+        android:inputType="none"
+        android:focusable="true"
+        android:clickable="true"
+        android:background="@drawable/edit_text_bg"
+        android:padding="12dp"
+        android:textColor="#2C6E49"
+        android:textColorHint="#757575"
+        app:layout_constraintTop_toBottomOf="@id/phoneLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"
+        tools:ignore="TextFields,VisualLintTextFieldSize" />
+
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/saveChangesButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/save_changes"
+        android:textAllCaps="true"
+        android:backgroundTint="#2C6E49"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/dateOfBirthInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"
+        tools:ignore="VisualLintButtonSize" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

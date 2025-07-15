@@ -1,0 +1,84 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="32dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F5FCD9">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/validationAnimation"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:lottie_fileName="validation_animation.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_marginBottom="24dp"
+        />
+
+
+    <!-- כפתורי בחירה בין Email ל־Phone -->
+    <RadioGroup
+        android:id="@+id/methodSelector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp">
+
+        <RadioButton
+            android:id="@+id/radioEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email_address"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone" />
+    </RadioGroup>
+
+    <!-- כפתור שליחת קוד -->
+    <Button
+        android:id="@+id/sendCodeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/send_code"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#2C6E49"
+        android:textColor="@android:color/white"/>
+
+    <!-- שדה קוד אימות -->
+    <EditText
+        android:id="@+id/editTextCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_verification_code"
+        android:inputType="number"
+        android:background="@drawable/edit_text_bg"
+        android:padding="12dp"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- כפתור אימות -->
+    <Button
+        android:id="@+id/verifyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/verifyPhone"
+        android:textAllCaps="false"
+        android:backgroundTint="#2C6E49"
+        android:textColor="@android:color/white"/>
+
+    <Button
+        android:id="@+id/checkEmailVerifiedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/verify_email"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#2C6E49"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>

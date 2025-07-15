@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BUD"
+        tools:targetApi="31">
+        <activity android:name=".HomepageActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="budapp-debef.firebaseapp.com" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".CustomerSignUpActivity" />
+        <activity android:name=".ManagerSignUpActivity" />
+        <activity android:name=".CustomerHomepageActivity" />
+        <activity android:name=".ManagerHomepageActivity" />
+        <activity android:name=".CustomerEditProfileActivity" />
+        <activity android:name=".FindPlantsActivity" />
+        <activity android:name=".ManagerEditProfileActivity" />
+        <activity android:name=".SignUpSuccessActivity" />
+        <activity android:name=".FindNurseryActivity" />
+        <activity android:name=".CustomerOrdersActivity" />
+        <activity android:name=".CustomerViewNurseryPlantsActivity" />
+        <activity android:name=".AddPlantActivity" />
+        <activity android:name=".CheckoutActivity" />
+        <activity android:name=".PaymentSuccessActivity" />
+        <activity android:name=".PlantDetailEditActivity" />
+        <activity android:name=".NurseryPlantListActivity" />
+        <activity android:name=".NurseryOrdersActivity" />
+        <activity android:name=".ManagerUpdateStorage" />
+        <activity android:name=".ValidationActivity"/>
+
+
+
+    </application>
+
+</manifest>

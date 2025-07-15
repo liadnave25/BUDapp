@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5FCD9"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layoutDirection="ltr"
+        android:id="@+id/headerLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp">
+
+        <ImageView
+            android:id="@+id/plantLeft"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/plant_illustration" />
+
+        <TextView
+            android:id="@+id/usernameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customer_name"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#2C6E49"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"/>
+
+        <ImageView
+            android:id="@+id/plantRight"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@string/plant_illustration" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/menuWrapper"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layoutDirection="ltr"
+            android:id="@+id/menuEditProfile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.166">
+
+            <ImageView
+                android:id="@+id/iconEditProfile"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/edit_icon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/edit_profile"
+                android:textSize="22sp"
+                android:layout_marginStart="12dp"
+                android:textColor="#333" />
+
+            <ImageView
+                android:id="@+id/arrowEditProfile"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/arrow" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layoutDirection="ltr"
+            android:id="@+id/menuFindNursery"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintTop_toBottomOf="@id/menuEditProfile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.166">
+
+            <ImageView
+                android:id="@+id/iconFindNursery"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/nursery_icon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/find_nursery"
+                android:textSize="22sp"
+                android:layout_marginStart="12dp"
+                android:textColor="#333" />
+
+            <ImageView
+                android:id="@+id/arrowFindNursery"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/arrow" />
+        </LinearLayout>
+        <LinearLayout
+            android:layoutDirection="ltr"
+            android:id="@+id/menuFindPlants"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintTop_toBottomOf="@id/menuOrderHistory"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.166">
+
+            <ImageView
+                android:id="@+id/iconFindPlants"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/search_plants" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/search_plants"
+                android:textSize="22sp"
+                android:layout_marginStart="12dp"
+                android:textColor="#333" />
+
+            <ImageView
+                android:id="@+id/arrowFindPlants"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/arrow" />
+        </LinearLayout>
+        <LinearLayout
+            android:layoutDirection="ltr"
+            android:id="@+id/menuOrderHistory"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintTop_toBottomOf="@id/menuFindNursery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.166">
+
+            <ImageView
+                android:id="@+id/iconOrderHistory"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/order_history" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/order_history"
+                android:textSize="22sp"
+                android:layout_marginStart="12dp"
+                android:textColor="#333" />
+
+            <ImageView
+                android:id="@+id/arrowOrderHistory"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/arrow" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layoutDirection="ltr"
+            android:id="@+id/menuLogout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintTop_toBottomOf="@id/menuOrderHistory"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.166">
+
+            <ImageView
+                android:id="@+id/iconLogout"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/logout_icon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/log_out"
+                android:textSize="22sp"
+
+                android:layout_marginStart="12dp"
+                android:textColor="#333" />
+
+            <ImageView
+                android:id="@+id/arrowLogout"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/arrow" />
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

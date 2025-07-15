@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5FCD9"
+    android:padding="32dp"
+    android:gravity="center">
+
+
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@string/app_logo"
+        android:scaleType="fitCenter" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/userTypeChipGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        app:chipSpacing="12dp"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipCustomer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customer"
+            android:checkable="true"
+            android:checked="true"
+            android:textColor="#2C6E49"
+            app:chipStrokeColor="#2C6E49"
+            app:chipStrokeWidth="1dp"
+            app:chipBackgroundColor="@color/chip_selector"
+            app:chipCornerRadius="12dp"
+            app:checkedIconVisible="false" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipNursery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nursery"
+            android:checkable="true"
+            android:textColor="#2C6E49"
+            app:chipStrokeColor="#2C6E49"
+            app:chipStrokeWidth="1dp"
+            app:chipBackgroundColor="@color/chip_selector"
+            app:chipCornerRadius="12dp"
+            app:checkedIconVisible="false" />
+    </com.google.android.material.chip.ChipGroup>
+
+
+    <EditText
+        android:id="@+id/emailInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:autofillHints=""
+        android:background="@drawable/edit_text_bg"
+        android:hint="@string/email_address"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textColorHint="#757575"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:autofillHints=""
+        android:background="@drawable/edit_text_bg"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColorHint="#757575"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/log_in"
+        android:textAllCaps="false"
+        android:backgroundTint="#2C6E49"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"
+        tools:ignore="VisualLintButtonSize" />
+
+    <TextView
+        android:id="@+id/signUpLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="none"
+        android:clickable="true"
+        android:focusable="true"
+        android:minHeight="48dp"
+        android:text="@string/do_not_have_an_account_sign_up"
+        android:textColor="#2C6E49"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
