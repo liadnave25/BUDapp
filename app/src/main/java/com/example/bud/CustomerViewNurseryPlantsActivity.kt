@@ -45,7 +45,7 @@ class CustomerViewNurseryPlantsActivity : AppCompatActivity() {
 
         checkoutButton.setOnClickListener {
             val intent = Intent(this, CheckoutActivity::class.java)
-            intent.putExtra("nurseryName", nurseryName) // ← שליחה של שם המשתלה
+            intent.putExtra("nurseryName", nurseryName)
             startActivity(intent)
         }
     }

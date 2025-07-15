@@ -32,7 +32,7 @@ class CheckoutActivity : AppCompatActivity() {
         payButton = findViewById(R.id.confirmOrderButton)
         continueShoppingButton = findViewById(R.id.backToShopButton)
 
-        // שליפת נתונים
+        // Load cart data
         orderItemList = CartManager.getItems()
         nurseryName = CartManager.getNurseryName()
 
@@ -52,10 +52,17 @@ class CheckoutActivity : AppCompatActivity() {
 
     private fun updateTotal() {
         val total = CartManager.getTotalPrice()
-        totalTextView.text = "סה\"כ לתשלום: ₪$total"
+        totalTextView.text = "Total: ₪$total"
     }
 
     private fun saveOrderToFirestore() {
+        val total = CartManager.getTotalPrice()
+
+        if (total <= 0) {
+            Toast.makeText(this, "You can't place an order with 0 shekels", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val db = FirebaseFirestore.getInstance()
 
         val customerId = getSharedPreferences("auth", MODE_PRIVATE)
@@ -65,7 +72,7 @@ class CheckoutActivity : AppCompatActivity() {
             customerId = customerId,
             nurseryName = nurseryName,
             items = orderItemList,
-            totalPrice = CartManager.getTotalPrice(),
+            totalPrice = total,
             status = "Pending"
         )
 
@@ -73,7 +80,9 @@ class CheckoutActivity : AppCompatActivity() {
             .add(order)
             .addOnSuccessListener {
                 CartManager.clearCart()
-                Toast.makeText(this, "הזמנה נשלחה בהצלחה", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Order placed successfully", Toast.LENGTH_SHORT).show()
+
+                // Update plant stock quantities
                 for (item in orderItemList) {
                     val plantQuery = db.collection("plants")
                         .whereEqualTo("nurseryName", nurseryName)
@@ -85,8 +94,7 @@ class CheckoutActivity : AppCompatActivity() {
                             val doc = docs.documents[0]
                             val currentQty = doc.getLong("quantity") ?: 0
                             val newQty = currentQty - item.quantity
-
-                            doc.reference.update("quantity", newQty.coerceAtLeast(0))  // שלא יירד מתחת ל־0
+                            doc.reference.update("quantity", newQty.coerceAtLeast(0))
                         }
                     }
                 }
@@ -95,7 +103,7 @@ class CheckoutActivity : AppCompatActivity() {
                 finish()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "שגיאה בשמירת ההזמנה: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Failed to save order: ${e.message}", Toast.LENGTH_LONG).show()
             }
     }
 }

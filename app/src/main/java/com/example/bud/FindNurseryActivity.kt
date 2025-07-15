@@ -3,11 +3,13 @@ package com.example.bud
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bud.dataclasses.NurseryAdapter
 import com.example.bud.dataclasses.Nursery
+import com.example.bud.utils.StorageImageLoader
 import com.google.firebase.firestore.FirebaseFirestore
 
 class FindNurseryActivity : AppCompatActivity() {
@@ -19,6 +21,8 @@ class FindNurseryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_nursery)
+        val rootLayout = findViewById<View>(android.R.id.content).rootView
+        StorageImageLoader.loadBackground("design/background4.png", rootLayout, this)
 
         recyclerView = findViewById(R.id.nurseryRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)

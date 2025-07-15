@@ -1,39 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="12dp"
+    android:padding="8dp"
     android:background="@android:color/white"
-    android:layout_marginBottom="12dp"
-    android:elevation="2dp">
+    android:layout_marginBottom="8dp"
+    android:elevation="2dp"
+    android:minHeight="220dp">
 
     <TextView
         android:id="@+id/plantName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/plant_name"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textColor="#2C6E49"
         android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/plantImage"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:contentDescription="@string/plant_image"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="8dp"
-        android:background="#F0F0F0" />
+        android:layout_height="120dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="6dp"
+        android:contentDescription="@string/plant_image" />
 
     <TextView
         android:id="@+id/plantPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/price"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:textColor="#2C6E49"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="6dp" />
 
     <LinearLayout
         android:id="@+id/addToCartLayout"
@@ -41,54 +42,56 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingTop="8dp"
-        android:layout_marginTop="8dp">
+        android:paddingTop="6dp"
+        android:layout_marginTop="6dp">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDecrease"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_marginEnd="4dp"
             android:background="@drawable/rounded_green_button"
-            android:text="@string/minus"
+            android:backgroundTint="@null"
+            android:foregroundTint="@null"
+            android:text="-"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:gravity="center" />
+            android:textSize="14sp"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/tvQuantity"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:gravity="center"
-            android:text="@string/_1"
+            android:text="1"
             android:textColor="#2C6E49"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:background="#FFFFFF"
             android:layout_marginEnd="4dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnIncrease"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:background="@drawable/rounded_green_button"
             android:backgroundTint="@null"
             android:foregroundTint="@null"
-            android:text="@string/plus"
+            android:text="+"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:gravity="center" />
-
-
+            android:textSize="14sp"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/btnAddToCart"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="6dp"
             android:layout_weight="1"
             android:backgroundTint="#2C6E49"
             android:text="@string/add"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="14sp" />
+            android:textSize="13sp"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 </LinearLayout>

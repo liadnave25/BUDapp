@@ -1,8 +1,8 @@
 package com.example.bud
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Gravity
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -14,18 +14,19 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class CustomerOrdersActivity : AppCompatActivity() {
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_orders)
 
         val layout = findViewById<LinearLayout>(R.id.ordersContainer)
-        StorageImageLoader.loadBackground("design/background_orders.jpg", layout, this)
+        StorageImageLoader.loadBackground("design/background2.png", layout, this)
 
         val customerId = getSharedPreferences("auth", MODE_PRIVATE)
             .getString("email", null)
 
         if (customerId == null) {
-            Toast.makeText(this, "שגיאה בזיהוי המשתמש", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "wrong identify the user", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -67,7 +68,7 @@ class CustomerOrdersActivity : AppCompatActivity() {
                     }
 
                     val total = TextView(this).apply {
-                        text = "סה\"כ להזמנה: ₪${"%.2f".format(order.totalPrice)}"
+                        text = "Total Order: ₪${"%.2f".format(order.totalPrice)}"
                         textSize = 16f
                         setTextColor(getColor(R.color.black))
                     }

@@ -24,7 +24,7 @@ class FindPlantsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_plants)
-        val rootLayout = findViewById<View>(R.id.findPlantsRoot)
+        val rootLayout = findViewById<View>(android.R.id.content).rootView
         StorageImageLoader.loadBackground("design/background4.png", rootLayout, this)
 
         recyclerView = findViewById(R.id.plantsRecyclerView)
@@ -57,7 +57,7 @@ class FindPlantsActivity : AppCompatActivity() {
                 filterPlants("All")
             }
             .addOnFailureListener {
-                Toast.makeText(this, "שגיאה בטעינת הצמחים", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "wrong upload plants", Toast.LENGTH_LONG).show()
             }
     }
 

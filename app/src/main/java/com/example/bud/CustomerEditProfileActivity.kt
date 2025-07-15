@@ -96,18 +96,10 @@ class CustomerEditProfileActivity : AppCompatActivity() {
                 emailInput.setText(email)
                 passwordInput.setText(password)
 
-                // ✨ הפרדת קידומת בינלאומית בצורה גמישה (ללא Regex)
-                if (phone.startsWith("+")) {
-                    var i = 1 // נתחיל אחרי ה־+
-                    while (i < phone.length && phone[i].isDigit() && i <= 4) {
-                        i++
-                    }
-                    val prefix = phone.substring(0, i) // למשל: +972, +1, +33
-                    val number = phone.substring(i)
-                    phonePrefixInput.setText(prefix)
-                    phoneNumberInput.setText(number)
+                if (phone.startsWith("+972") && phone.length > 4) {
+                    phonePrefixInput.setText("+972")
+                    phoneNumberInput.setText(phone.substring(4))
                 } else {
-                    // טלפון מקומי בלי קידומת
                     phonePrefixInput.setText("")
                     phoneNumberInput.setText(phone)
                 }
