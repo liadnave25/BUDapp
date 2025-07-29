@@ -61,8 +61,37 @@ class CustomerSignUpActivity : AppCompatActivity() {
             val phoneNumber = findViewById<EditText>(R.id.phoneNumberInput).text.toString().trim()
             val dateStr = dateOfBirthInput.text.toString().trim()
 
-            if (email.isEmpty() || password.length < 6) {
-                Toast.makeText(this, "יש להזין אימייל וסיסמה (לפחות 6 תווים)", Toast.LENGTH_SHORT).show()
+            if (firstName.isEmpty() || !firstName.matches(Regex("^[A-Za-zא-ת]+$"))) {
+                Toast.makeText(this, "Please enter a valid first name (letters only)", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (lastName.isEmpty() || !lastName.matches(Regex("^[A-Za-zא-ת]+$"))) {
+                Toast.makeText(this, "Please enter a valid last name (letters only)", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (email.isEmpty() || !email.matches(Regex("^[A-Za-z][A-Za-z0-9]*@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))) {
+                Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (password.length < 6) {
+                Toast.makeText(this, "Password must be at least 6 characters long", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (!password.matches(Regex(".*[A-Za-z].*")) || !password.matches(Regex(".*\\d.*"))) {
+                Toast.makeText(this, "Password must include both letters and numbers", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (!phonePrefix.matches(Regex("^\\+\\d{1,4}$"))) {
+                Toast.makeText(this, "Country code must start with '+' followed by 1-4 digits.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (!phoneNumber.matches(Regex("^\\d{7,10}$"))) {
+                Toast.makeText(this, "Phone number must contain 7-10 digits only.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
