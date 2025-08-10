@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bud.dataclasses.OrderAdapter
+import com.example.bud.adapters.OrderAdapter
 import com.example.bud.dataclasses.Order
 import com.example.bud.dataclasses.OrderItem
 import com.google.firebase.firestore.FirebaseFirestore
@@ -20,7 +20,7 @@ class CheckoutActivity : AppCompatActivity() {
     private lateinit var payButton: Button
     private lateinit var continueShoppingButton: Button
 
-    private lateinit var orderItemList: List<OrderItem>
+    private lateinit var adapter: OrderAdapter
     private var nurseryName: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,17 +32,39 @@ class CheckoutActivity : AppCompatActivity() {
         payButton = findViewById(R.id.confirmOrderButton)
         continueShoppingButton = findViewById(R.id.backToShopButton)
 
-        // Load cart data
-        orderItemList = CartManager.getItems()
         nurseryName = CartManager.getNurseryName()
 
+        adapter = OrderAdapter(
+            items = CartManager.getItems().toMutableList(),
+            onIncrease = { pos ->
+                val current: OrderItem = CartManager.getItems()[pos]
+                CartManager.updateQuantity(pos, current.quantity + 1)
+                refreshCart()
+            },
+            onDecrease = { pos ->
+                val current: OrderItem = CartManager.getItems()[pos]
+                CartManager.updateQuantity(pos, (current.quantity - 1).coerceAtLeast(1))
+                refreshCart()
+            },
+            onRemove = { pos ->
+                CartManager.removeAt(pos)
+                refreshCart()
+            }
+        )
+
         cartRecyclerView.layoutManager = LinearLayoutManager(this)
-        cartRecyclerView.adapter = OrderAdapter(orderItemList)
+        cartRecyclerView.adapter = adapter
 
         updateTotal()
 
         continueShoppingButton.setOnClickListener {
-            finish()
+            if (nurseryName.isNotEmpty()) {
+                val intent = Intent(this, CustomerViewNurseryPlantsActivity::class.java)
+                intent.putExtra("nurseryName", nurseryName)
+                startActivity(intent)
+            } else {
+                finish()
+            }
         }
 
         payButton.setOnClickListener {
@@ -50,28 +72,33 @@ class CheckoutActivity : AppCompatActivity() {
         }
     }
 
+    private fun refreshCart() {
+        adapter.replaceAll(CartManager.getItems())
+        updateTotal()
+    }
+
     private fun updateTotal() {
         val total = CartManager.getTotalPrice()
-        totalTextView.text = "Total: ₪$total"
+        totalTextView.text = "₪${"%.2f".format(total)}"
     }
 
     private fun saveOrderToFirestore() {
         val total = CartManager.getTotalPrice()
-
         if (total <= 0) {
             Toast.makeText(this, "You can't place an order with 0 shekels", Toast.LENGTH_SHORT).show()
             return
         }
 
         val db = FirebaseFirestore.getInstance()
-
         val customerId = getSharedPreferences("auth", MODE_PRIVATE)
             .getString("email", "") ?: return
+
+        val itemsSnapshot: List<OrderItem> = CartManager.getItems()
 
         val order = Order(
             customerId = customerId,
             nurseryName = nurseryName,
-            items = orderItemList,
+            items = itemsSnapshot,
             totalPrice = total,
             status = "Pending"
         )
@@ -79,11 +106,7 @@ class CheckoutActivity : AppCompatActivity() {
         db.collection("orders")
             .add(order)
             .addOnSuccessListener {
-                CartManager.clearCart()
-                Toast.makeText(this, "Order placed successfully", Toast.LENGTH_SHORT).show()
-
-                // Update plant stock quantities
-                for (item in orderItemList) {
+                for (item in itemsSnapshot) {
                     val plantQuery = db.collection("plants")
                         .whereEqualTo("nurseryName", nurseryName)
                         .whereEqualTo("name", item.plantName)
@@ -99,6 +122,8 @@ class CheckoutActivity : AppCompatActivity() {
                     }
                 }
 
+                CartManager.clearCart()
+                Toast.makeText(this, "Order placed successfully", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, PaymentSuccessActivity::class.java))
                 finish()
             }

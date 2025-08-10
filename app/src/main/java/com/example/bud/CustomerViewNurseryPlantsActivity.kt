@@ -34,7 +34,12 @@ class CustomerViewNurseryPlantsActivity : AppCompatActivity() {
         checkoutButton = findViewById(R.id.checkoutButton)
 
         nurseryName = intent.getStringExtra("nurseryName") ?: ""
-        CartManager.setNurseryName(nurseryName)
+
+        val cleared = CartManager.setNurseryNameWithReset(nurseryName)
+        if (cleared) {
+            Toast.makeText(this, "You moved to another nursery — the cart has been reset.", Toast.LENGTH_SHORT).show()
+        }
+
         setupSpinner()
         setupRecyclerView()
         loadPlants()

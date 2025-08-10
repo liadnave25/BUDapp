@@ -145,7 +145,7 @@ class ValidationActivity : AppCompatActivity() {
         val role = prefs.getString("role", "")
         val email = prefs.getString("email", "")
 
-        if (role == "nurseries") {
+        if (role == "managers") {
             val nurseryId = getSharedPreferences("BUD_PREFS", MODE_PRIVATE)
                 .getString("NURSERY_ID", null)
 

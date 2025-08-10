@@ -15,6 +15,7 @@
         android:textColor="#2C6E49"
         android:textStyle="bold" />
 
+    <!-- שורת סיכום: תוויות כמות/מחיר ליחידה/סה״כ -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,6 +47,76 @@
             android:text="@string/total"
             android:textAlignment="viewEnd"
             android:textColor="#333333" />
+    </LinearLayout>
+
+    <!-- שורת פעולות: שינוי כמות ומחיקה -->
+    <LinearLayout
+        android:id="@+id/actionsRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+
+        <!-- שינוי כמות -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="start|center_vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDecrease"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:text="−"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/rounded_green_button"
+                android:backgroundTint="@null"
+                android:foregroundTint="@null"
+                android:contentDescription="@string/decrease_quantity" />
+
+            <TextView
+                android:id="@+id/qtyValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="12dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnIncrease"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:text="+"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/rounded_green_button"
+                android:backgroundTint="@null"
+                android:foregroundTint="@null"
+                android:contentDescription="@string/increase_quantity" />
+
+        </LinearLayout>
+
+        <!-- מחיקה -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRemove"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:paddingHorizontal="16dp"
+            android:text="@string/remove"
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded_green_button"
+            android:backgroundTint="@null"
+            android:foregroundTint="@null"
+            android:contentDescription="@string/remove" />
     </LinearLayout>
 
 </LinearLayout>

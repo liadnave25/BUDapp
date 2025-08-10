@@ -115,4 +115,7 @@
     <string name="plus">+</string>
     <string name="add">ADD</string>
     <string name="verify_email">Verify Email</string>
+    <string name="remove">מחק</string>
+    <string name="decrease_quantity">הקטן כמות</string>
+    <string name="increase_quantity">הגדל כמות</string>
 </resources>

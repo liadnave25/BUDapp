@@ -55,10 +55,11 @@ class ManagerSignUpActivity : AppCompatActivity() {
             val about = aboutInput.text.toString().trim()
             val email = emailInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()
-            val phonePrefix = phonePrefixInput.text.toString().trim().ifEmpty { "+972" }
-            val phone = phonePrefix + phoneNumberInput.text.toString().trim()
+            val rawPrefix = phonePrefixInput.text.toString().trim().ifEmpty { "+972" }
+            val numberDigits = phoneNumberInput.text.toString().trim()
             val address = addressInput.text.toString().trim()
 
+            // ולידציות קיימות
             if (name.isEmpty() || !name.matches(Regex("^[A-Za-zא-ת0-9 ]{2,}$"))) {
                 Toast.makeText(this, "Nursery name must be at least 2 characters and contain only letters, numbers and spaces.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -79,15 +80,18 @@ class ManagerSignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "Address must be at least 4 characters.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if (!phonePrefix.matches(Regex("^\\+\\d{1,4}$"))) {
-                Toast.makeText(this, "Country code must start with '+' followed by 1-4 digits.", Toast.LENGTH_SHORT).show()
+
+            // טלפון — בלי ניקוי, רק בדיקה שהקידומת והמספר עומדים בכללים
+            if (!rawPrefix.matches(Regex("^\\+\\d{1,4}$"))) {
+                Toast.makeText(this, "Country code must start with '+' followed by 1–4 digits.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (!numberDigits.matches(Regex("^\\d{7,10}$"))) {
+                Toast.makeText(this, "Phone number must contain 7–10 digits only.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (!phone.matches(Regex("^\\d{7,10}$"))) {
-                Toast.makeText(this, "Phone number must contain 7-10 digits only.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+            val phone = rawPrefix + numberDigits
 
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
